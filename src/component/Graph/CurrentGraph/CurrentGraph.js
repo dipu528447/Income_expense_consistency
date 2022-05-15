@@ -1,29 +1,32 @@
 import React, { useContext } from 'react';
-import { userContext } from '../../App'
+import { userContext } from '../../../App'
 import { Chart,ArcElement } from 'chart.js';
 import {Doughnut} from 'react-chartjs-2';
-import Label from '../Label/Label';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from "firebase/auth";
+import CurrentLabel from './../../Label/CurrentLabel/CurrentLabel';
 
 Chart.register(ArcElement);
 
-const Graph = () => {
+const CurrentGraph = () => {
 
     const navigate= useNavigate();
 
     const [,setUser, transaction, setTransaction] = useContext(userContext)
     let total_income=0,total_savings=0,total_expense=0;
     for(var i=0;i<transaction.length;i++){
-        if(transaction[i].type==='income'){
-            total_income+=parseInt(transaction[i].amount);
-        }        
-        else if(transaction[i].type==='expense'){
-            total_expense+=parseInt(transaction[i].amount);
-        } 
-        else if(transaction[i].type==='savings'){
-            total_savings+=parseInt(transaction[i].amount);
-        } 
+        if(transaction[i].category==='Current'){
+            if(transaction[i].type==='income'){
+                total_income+=parseInt(transaction[i].amount);
+            }        
+            else if(transaction[i].type==='expense'){
+                total_expense+=parseInt(transaction[i].amount);
+            } 
+            else if(transaction[i].type==='savings'){
+                total_savings+=parseInt(transaction[i].amount);
+            } 
+        }
+        
     }
     const config={
     
@@ -52,7 +55,7 @@ const Graph = () => {
         console.log(error)
         });
         setUser([]);
-        setTransaction([{name:'',type:'',amount:0}])
+        setTransaction([{name:'',type:'',amount:0,category:''}])
         // localStorage.setItem("LoggedUser",JSON.stringify({email: '',name:''}))
         navigate("/")
     }
@@ -60,19 +63,19 @@ const Graph = () => {
         <div className='flex justify-content max-w-xs mx-auto'>
             <div className='item'>
                 <div className='chart relative'>
-                    {console.log({...config})}
+                    {/* {console.log({...config})} */}
                     <Doughnut {...config}/>
                     <h3 className='mb-4 font-bold title'>Total
                     <span className='block text-3xl text-emerald-400'>${total_income}</span>
                     </h3>
                 </div>
                 <div className='flex flex-col py-10 gap-4'>
-                    <Label/>
+                    <CurrentLabel/>
                 </div>
-                <button className="border py-2 text-white bg-red-500 w-full" onClick={logout}>signout</button>
+                
             </div>
         </div>
     );
 };
 
-export default Graph;
+export default CurrentGraph;

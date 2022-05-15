@@ -1,20 +1,21 @@
 import React, { useContext } from 'react';
-import { userContext } from '../../App';
-const Label = () => {
+import { userContext } from '../../../App';
+const PreLabel = () => {
     const [,, transaction,] = useContext(userContext)
     let total_income=0;
     let total_savings=0;
     let total_expense=0;
     for(var i=0;i<transaction.length;i++){
-        
-        if(transaction[i].type==='income'){
-            total_income+=parseInt(transaction[i].amount);
-        }
-        else if(transaction[i].type==='savings'){
-            total_savings+=parseInt(transaction[i].amount);
-        }
-        else if(transaction[i].type==='expense'){
-            total_expense+=parseInt(transaction[i].amount);
+        if(transaction[i].category==='Previous'){
+            if(transaction[i].type==='income'){
+                total_income+=parseInt(transaction[i].amount);
+            }
+            else if(transaction[i].type==='savings'){
+                total_savings+=parseInt(transaction[i].amount);
+            }
+            else if(transaction[i].type==='expense'){
+                total_expense+=parseInt(transaction[i].amount);
+            }
         }
     }
     return (
@@ -54,4 +55,4 @@ function LabelComponent(props){
         </div>
     )
 }
-export default Label;
+export default PreLabel;

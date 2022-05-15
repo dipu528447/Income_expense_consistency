@@ -13,7 +13,7 @@ import PrivateRoute from './component/RequiredAuth/PrivateRoute';
 export const userContext = createContext();
 function App() {
   const [user, setUser] = useState([])
-  const [transaction,setTransaction] = useState([{name:'',type:'',amount:0}])
+  const [transaction,setTransaction] = useState([{name:'',type:'',amount:0, date:'',category:''}])
   initializeApp(firebaseConfig);
   return (
     <div className="App">
