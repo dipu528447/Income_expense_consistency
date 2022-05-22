@@ -4,9 +4,10 @@ import {useForm} from 'react-hook-form';
 import CurrentList from './../../List/CurrentList/CurrentList';
 import { type } from '@testing-library/user-event/dist/type';
 
-const CurrentForm = () => {
+const CurrentForm = (props) => {
     const {register, handleSubmit,resetField}=useForm();
     const [,, transaction, setTransaction] = useContext(userContext)
+    
     function reload(){
         document.getElementById("name").value="";
         document.getElementById("date").value="";
@@ -15,6 +16,8 @@ const CurrentForm = () => {
     }
     function onSubmit(data){
         data.category = 'Current'
+        console.log(transaction.length);
+        data.id= 'C-'+transaction.length;
         const trans= [...transaction]
         trans.push(data)
         setTransaction(trans)

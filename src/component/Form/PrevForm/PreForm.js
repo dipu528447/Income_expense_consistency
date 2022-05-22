@@ -6,14 +6,18 @@ import PreList from './../../List/PreList/PreList';
 const PreForm = () => {
     const {register, handleSubmit,resetField}=useForm();
     const [,, transaction, setTransaction] = useContext(userContext)
+    
     function reload(){
         document.getElementById("name").value="";
         document.getElementById("date").value="";
         document.getElementById("type").value="income"
         document.getElementById("amount").value="";        
+        
     }
     function onSubmit(data){
         data.category='Previous'
+        console.log(transaction.length);
+        data.id='P-'+transaction.length;
         const trans= [...transaction]
         // console.log(trans);
         trans.push(data)
@@ -46,7 +50,7 @@ const PreForm = () => {
                     </div>
                 </div>
             </form>
-            <PreList/>
+            <PreList />
         </div>
     );
 };

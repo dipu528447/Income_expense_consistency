@@ -97,6 +97,7 @@ const Login = () => {
     return (
         <div>
             <div className="container max-w-full mx-auto py-4 px-6">
+            <h1 className="text-4xl py-8 mb-10 bg-slate-700 text-white rounded">Salary and Expense Consistency System</h1>  
                 <div className="font-sans">
                     <div className="max-w-sm mx-auto px-6">
                         <div className="relative flex flex-wrap">
