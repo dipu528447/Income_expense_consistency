@@ -50,6 +50,7 @@ const Login = () => {
             signInWithEmailAndPassword(auth, email, password)
             .then(function(result){
                 setUser({isSigned:true,email:email,name:''})
+                
                 navigate("/dashboard");
             })
             // .then(setUser({isSigned:true}))
@@ -91,7 +92,18 @@ const Login = () => {
         }
         return false;
     }
-
+    const adminPanel = ()=>{
+        
+        const email = document.getElementById("staticEmail").value;
+        const password = document.getElementById("inputPassword").value;
+        if(email==='admin@gmail.com' && password==='admin2222'){
+            navigate('/admin');
+        }
+        else{
+            alert("Unauthorized Effort!!!")
+            
+        }
+    }
     
     //return design 
     return (
@@ -125,21 +137,18 @@ const Login = () => {
                                         Login
                                     </button>
                                         <div className='d-flex justify-content-between'>
-                                            {/* <button className="m-3 text-lg font-semibold 
-                                                bg-red-800 w-25 text-white rounded-lg
-                                                px-6 py-3 shadow-xl hover:text-white hover:bg-black">
-                                                <i className='form-submit material-icons' style={{"color":"red" }} type="button" onClick={loginwithGmail}>mail</i>
-                                            </button>
-                                            <button className="m-3 text-lg font-semibold 
-                                                bg-blue-800 w-25 text-white rounded-lg
-                                                px-6 py-3 shadow-xl hover:text-white hover:bg-black">
-                                                <i className='form-submit material-icons' type="button" onClick={loginWithFb}>facebook</i>
-                                            </button> */}
                                             <Link to="/NewAccount"><button className="m-3 text-sm 
                                                 bg-blue-800 w-50 text-white rounded-lg
                                                 px-3 py-4 shadow-xl hover:text-white hover:bg-black">
                                                 New User
                                             </button></Link>
+                                        </div>
+                                        <div className='d-flex justify-content-between'>
+                                            <button className="m-3 text-sm 
+                                                bg-blue-800 w-50 text-white rounded-lg
+                                                px-3 py-4 shadow-xl hover:text-white hover:bg-black" onClick={adminPanel}>
+                                                Login as Admin
+                                            </button>
                                         </div>
                                     </div>
                                 </form>

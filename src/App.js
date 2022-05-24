@@ -9,8 +9,8 @@ import Dashboard from './component/Dashboard/Dashboard';
 import {Route,Routes} from 'react-router-dom';
 import PrivateRoute from './component/RequiredAuth/PrivateRoute';
 import ExpenseTracker from './component/ExpenseTracker/ExpenseTracker';
-
-
+import AdminPanel from './component/admin/AdminPanel';
+import GoldPrice from './component/GoldPrice/GoldPrice';
 
 export const userContext = createContext();
 function App() {
@@ -27,7 +27,8 @@ function App() {
                 <Route path="/dashboard" element={
                 <PrivateRoute><Dashboard></Dashboard></PrivateRoute>}/>
                 <Route path="/ExpenseTracker" element={<ExpenseTracker></ExpenseTracker>}/>
-                
+                <Route path="/admin" element={<AdminPanel/>}/>
+                <Route path="/goldPrice" element={<GoldPrice/>}/>
             </Routes>
           </userContext.Provider>
       </div>
