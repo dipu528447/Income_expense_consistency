@@ -8,6 +8,15 @@ const firebaseConfig = {
   messagingSenderId: "698018174414",
   appId: "1:698018174414:web:83730bdd8b0cdd9c47079f"
 };
+// const firebaseConfig = {
+//   apiKey: "AIzaSyDkVfHoDiB7JAxtEkIt5kIFo31EAbvp87s",
+//   authDomain: "income-expense-39951.firebaseapp.com",
+//   projectId: "income-expense-39951",
+//   storageBucket: "income-expense-39951.appspot.com",
+//   messagingSenderId: "256836073986",
+//   appId: "1:256836073986:web:fa268f6408f1aceb44851b",
+//   measurementId: "G-EFYGSWHMRS"
+//};
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export default firebaseConfig;

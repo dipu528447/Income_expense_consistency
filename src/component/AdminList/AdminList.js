@@ -35,8 +35,20 @@ const AdminList = () => {
 
 function Transaction({item}){
     const [trans,setTrans] = useContext(expenseContext);
+    const delete_item= async(id)=>{
+        console.log(id);
+        try{
+            await GoldPriceService.deleteExpense(id);
+            setTrans(trans.filter(product=>product.id!==id))    
+            
+        }
+        catch(e){
+            console.log(e);
+        }        
+    }
     return (
         <div className='item flex justify-content-between bg-gray-50 py-2 rounded-r'>
+            <button className='px-3' onClick={()=>delete_item(item.id)}><box-icon size="15" name="trash"></box-icon></button>
             <span className='w-1/2'>{item.year??""}</span>
             <span className='w-1/2'>{item.price??""}</span>
         </div>

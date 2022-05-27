@@ -15,14 +15,41 @@ const PreForm = () => {
         
     }
     function onSubmit(data){
+
         data.category='Previous'
-        console.log(transaction.length);
+        //console.log(transaction.length);
         data.id='P-'+transaction.length;
         const trans= [...transaction]
         // console.log(trans);
-        trans.push(data)
-        setTransaction(trans)
-        reload()
+        const income= trans.filter(item=>item.type==='income' && item.category==='Previous')
+        const expense= trans.filter(item=>item.type==='expense' && item.category==='Previous')
+        const savings= trans.filter(item=>item.type==='savings' && item.category==='Previous')
+        console.log(income,expense,savings)
+        let total_income =0,total_expense=0,total_savings=0;
+        income.map(item=>total_income=parseInt(item.amount)+total_income);
+        expense.map(item=>total_expense=parseInt(item.amount)+total_expense);
+        savings.map(item=>total_savings=parseInt(item.amount)+total_savings);
+        console.log(total_income,total_expense,total_savings,data.amount);
+        total_expense += total_savings;
+        total_expense += parseInt(data.amount);
+        console.log(total_income,total_expense);
+        if(data.type==='expense' || data.type==='savings'){
+            if(total_income-total_expense>0){
+                trans.push(data)
+                setTransaction(trans)
+                alert('Transaction Completed')
+                reload()
+            }
+            else{
+                alert('Expense amount can not be execced the income amount...please insert more income type transaction')
+            }
+        }
+        else{
+            trans.push(data)
+            setTransaction(trans)
+            alert('Transaction Completed')
+            reload()
+        }
     }
     return (
         <div className='form max-w-sm mx-auto w-96'>

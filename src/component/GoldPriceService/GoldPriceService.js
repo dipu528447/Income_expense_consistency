@@ -12,12 +12,13 @@ class GoldPriceService {
         return updateDoc(expenseDoc,updatedExpense);
     }
     deleteExpense = (id) =>{
-        return deleteDoc(doc(db, "goldPrice", id))
+        return deleteDoc(doc(db, "goldPrice", id))        
     }
     filter= (val1,operator,val2)=>{
         return query(collection(db,"goldPrice"),where(val1,operator,val2))
     }
     getAllExpense= ()=>{
+        
         return getDocs(expenseCollectionRef);
     }
     getExpense = (id) => {
