@@ -2,6 +2,7 @@ import { loadBundle } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import AdminList from '../AdminList/AdminList';
+import AdminNavBar from '../AdminNavBar/AdminNavBar';
 import GoldPriceService from '../GoldPriceService/GoldPriceService';
 
 const AdminPanel = () => {
@@ -24,10 +25,15 @@ const AdminPanel = () => {
         }
     }
     return (
+        <div>
+            <AdminNavBar/>
+            <br/>
             <div className='form max-w-sm mx-auto w-96'>
+                
                 <h1 className='font-bold pb-4 text-xl'>
                     Gold Price 
                 </h1>
+                
                 <form id="form" onSubmit={handleSubmit(onSubmit)}>
                     <div className='grid gap-4'>
                         <div className='input-group'>
@@ -43,6 +49,7 @@ const AdminPanel = () => {
                 </form>
                 <AdminList/>
             </div>
+        </div>
     );
 };
 

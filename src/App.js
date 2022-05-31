@@ -11,6 +11,8 @@ import PrivateRoute from './component/RequiredAuth/PrivateRoute';
 import ExpenseTracker from './component/ExpenseTracker/ExpenseTracker';
 import AdminPanel from './component/admin/AdminPanel';
 import GoldPrice from './component/GoldPrice/GoldPrice';
+import NewFeature from './component/NewFeature/NewFeature';
+import AdminGoldMonth from './component/AdminGoldMonth/AdminGoldMonth';
 
 export const userContext = createContext();
 function App() {
@@ -29,7 +31,10 @@ function App() {
                 <Route path="/ExpenseTracker" element={<ExpenseTracker></ExpenseTracker>}/>
                 <Route path="/admin" element={<AdminPanel/>}/>
                 <Route path="/goldPrice" element={<GoldPrice/>}/>
+                <Route path="/newFeature" element={<NewFeature/>}/>
+                <Route path="/adminGoldMonth" element={<AdminGoldMonth/>}/>
             </Routes>
+
           </userContext.Provider>
       </div>
     </div>

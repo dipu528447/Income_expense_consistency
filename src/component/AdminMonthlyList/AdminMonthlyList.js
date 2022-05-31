@@ -1,19 +1,19 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import 'boxicons'
-import GoldPriceService from '../GoldPriceService/GoldPriceService';
 import { useNavigate } from 'react-router-dom';
+import GoldPriceMonthlyService from '../GoldPriceMonthly/GoldPriceMonthlyService';
 
 
 export const expenseContext = createContext();
-const AdminList = () => {
+const AdminMonthlyList = (props) => {
     const [trans,setTrans] = useState([])
     const navigate=useNavigate()
     useEffect(()=>{
         getExpense();
         
-    },[trans])
+    },[])
     const getExpense= async()=>{
-        const data = await GoldPriceService.getAllExpense();
+        const data = await GoldPriceMonthlyService.getAllExpense();
         setTrans(data.docs.map((doc)=>({...doc.data(),id:doc.id})))
         
     }
@@ -38,7 +38,7 @@ function Transaction({item}){
     const delete_item= async(id)=>{
         console.log(id);
         try{
-            await GoldPriceService.deleteExpense(id);
+            await GoldPriceMonthlyService.deleteExpense(id);
             setTrans(trans.filter(product=>product.id!==id))    
             
         }
@@ -49,9 +49,9 @@ function Transaction({item}){
     return (
         <div className='item flex justify-content-between bg-gray-50 py-2 rounded-r'>
             <button className='px-3' onClick={()=>delete_item(item.id)}><box-icon size="15" name="trash"></box-icon></button>
-            <span className='w-1/2'>{item.year??""}</span>
+            <span className='w-1/2'>{item.month??""}</span>
             <span className='w-1/2'>{item.price??""}</span>
         </div>
     )
 }
-export default AdminList;
+export default AdminMonthlyList;

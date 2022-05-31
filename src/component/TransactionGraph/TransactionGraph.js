@@ -83,7 +83,7 @@ const TransactionGraph = () => {
                 <div className='flex flex-col py-10 gap-4'>
                     <TransactionLabel/>
                 </div>
-                
+                <button className="border py-2 text-white bg-red-500 w-full" onClick={logout}>Logout</button> 
             </div>
             
         </div>
